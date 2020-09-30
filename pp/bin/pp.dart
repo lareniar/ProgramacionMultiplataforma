@@ -4,25 +4,55 @@ void main(List<String> arguments) {
 // Ej: Dado N =12, y L1=[1,2,3], la lista a calcular L2 será [2,4,6]
 
 // Extra1:  lo mismo pero N representa un área h=alto x w=ancho. L2 sería una lista de áreas. 
-// Extra2: Y si el área tuviese coordenadas x,y. L2 sería una lista de áreas y coordenadas .  
+// Extra2: Y si el área tuviese coordenadas x,y. L2 sería una lista de áreas y coordenadas . 
+
+// double a = 1, b = 2;
+// var multiply = (double a, double b) {
+//   return a*b;
+// };
+// prdouble(multiply(a, b));
+// Future<String> httpGet(String url){
+//   return Future.delayed(new Duration( seconds: 4 ), (){
+//     return 'hola mund';
+//   });
+// }
+
+// prdouble('Estamos a punto de pedir datos');
+// httpGet('https://api.nasa.com/aliens').then( (data) {
+//   prdouble(data);
+// });
+
+// prdouble('Ultima linea');
 
 
 
-
-int CalcularSegundaLista(){
-  return(2);
+List<String> CalcularSegundaLista( {double N, double M, List<double> L1} ){
+  List<String> L2 = [];
+  print(N);
+  for (var i = 0; i < L1.length; i++) {
+    
+    String number = ( (L1[i]/M) * N).toStringAsFixed(2);
+      L2.add( number );
+  }
+  return L2;
 }
 
-num n 12;
-17
-const listaDeNumeros = [0, 2, 4];
-6
-const listaDeNumeros = [0, 2, 4];
-17
+double CalcularSumaTotalDeValoresL1(List<double> L1){
+  double suma = 0;
+  for (var i = 0; i < L1.length; i++) {
+    suma += L1[i];
+  }
+  print(suma);
+  return suma;
+}
 
+double N = 18.6;
+List<double> L1 = [4, 2.5, 4];
 
-const listaDeNumeros = [0, 4, 8];
+double M = CalcularSumaTotalDeValoresL1(L1);
+List<String>L2 = CalcularSegundaLista( N: N, M: M, L1: L1 );
 
-print(CalcularSegundaLista());
+print(L2);
+
 
 }
