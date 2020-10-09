@@ -1,3 +1,4 @@
+import 'package:contador/src/class/contador.dart';
 import 'package:flutter/material.dart';
 
 class ContadorPage extends StatefulWidget {
@@ -26,10 +27,8 @@ int _conteo = 5;
           mainAxisAlignment:
             MainAxisAlignment.center,
           children: [
-            Text('oleee', style: _estiloTexto),
-            Text('que oleee', style: _estiloTexto),
-            Text('que oleee', style: _estiloTexto),
-            Text('Cuantos oles hay: $_conteo', style: _estiloTexto),
+            for (var i = 0; i < 5; i++) 
+            _botn(),
           ],
         ),
       ),
@@ -44,31 +43,47 @@ int _conteo = 5;
       //       });
       //     },
       //     ),
-      floatingActionButton: _crearBotones(),
+      // floatingActionButton: _crearBotones(),
       // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
-  Widget _crearBotones() {
+  Widget _botn(){
+    Contador contador = new Contador(0);
     return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        SizedBox(width: 30.0,),
-        FloatingActionButton(child: Icon(Icons.accessible_forward), onPressed: _restart ),
-        Expanded( child: SizedBox(width: 30.0,)),
-        FloatingActionButton(child: Icon(Icons.accessible_forward), onPressed: _quitar ),
-        SizedBox(width: 30.0,),
-        FloatingActionButton(child: Icon(Icons.accessible_forward), onPressed: _agregar )
+        FlatButton(child: Icon(Icons.add), onPressed: () => _agregar(contador) ),
+        SizedBox(width: 15.0,),
+        Text('${contador.numero}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),),
+        SizedBox(width: 15.0,),
+        // FlatButton(child: Icon(Icons.remove), onPressed: () contador.sumNumero() ),
+        // SizedBox(width: 30.0,),
       ]
     );
   }
+  
+  // Widget _crearBotones() {
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.end,
+  //     children: <Widget>[
+  //       SizedBox(width: 30.0,),
+  //       FloatingActionButton(child: Icon(Icons.accessible_forward), onPressed: _restart ),
+  //       Expanded( child: SizedBox(width: 30.0,)),
+  //       FloatingActionButton(child: Icon(Icons.accessible_forward), onPressed: _quitar ),
+  //       SizedBox(width: 30.0,),
+  //       FloatingActionButton(child: Icon(Icons.accessible_forward), onPressed: _agregar )
+  //     ]
+  //   );
+  // }
     
-  void _agregar(){
+    void _agregar(Contador contador){
     setState(() {
-    _conteo++;
+    contador.setNumero = contador.get_numero + 1;
       
     });
-  }
+
   void _quitar(){
     setState(() {
     _conteo-= 1;
@@ -81,4 +96,6 @@ int _conteo = 5;
       
     });
   }
+
+
 }
