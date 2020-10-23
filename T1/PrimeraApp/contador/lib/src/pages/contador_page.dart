@@ -1,4 +1,4 @@
-import 'package:contador/src/class/contador.dart';
+import 'package:contador/src/widget/contador_widget.dart';
 import 'package:flutter/material.dart';
 
 class ContadorPage extends StatefulWidget {
@@ -27,10 +27,21 @@ int _conteo = 5;
           mainAxisAlignment:
             MainAxisAlignment.center,
           children: [
-            for (var i = 0; i < 5; i++) 
-            _botn(),
+            for(int i=0;i<_listContadores.length;i++)
+              _botn(_listContadores[i]),
           ],
         ),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+
+        children:<Widget>[
+          FloatingActionButton(
+            child: Icon(Icons.add), 
+            onPressed: _addContador,//invocamos la funcion NO la llamamos
+            tooltip: 'añadir contador',
+          ),
+        ],
       ),
       // floatingActionButton: 
       //   FloatingActionButton(
@@ -48,21 +59,30 @@ int _conteo = 5;
     );
   }
 
-  Widget _botn(){
-    Contador contador = new Contador(0);
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.end,
-      children: <Widget>[
-        FlatButton(child: Icon(Icons.add), onPressed: () => _agregar(contador) ),
-        SizedBox(width: 15.0,),
-        Text('${contador.numero}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),),
-        SizedBox(width: 15.0,),
-        // FlatButton(child: Icon(Icons.remove), onPressed: () contador.sumNumero() ),
-        // SizedBox(width: 30.0,),
-      ]
-    );
-  }
+@
+  // Widget _botn(Contador contador){
+  //   int valor= contador.valor;
+
+  //   return Row(
+  //     mainAxisAlignment: MainAxisAlignment.center,
+  //       crossAxisAlignment: CrossAxisAlignment.end,
+  //     children: <Widget>[
+  //       FlatButton(
+  //         child: Icon(Icons.add),
+  //         onPressed:() => _incrementCounter(contador)
+  //         ),
+  //       SizedBox(
+  //         width: 15.0,
+  //         ),
+  //       Text('${contador.valor}', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 50),),
+  //       SizedBox(width: 15.0,),
+  //       FlatButton(
+  //         child: Icon(Icons.remove),
+  //         onPressed: () => _decrementCounter(contador)),
+  //       SizedBox(width: 30.0,),
+  //     ]
+  //   );
+  // }
   
   // Widget _crearBotones() {
   //   return Row(
@@ -77,25 +97,27 @@ int _conteo = 5;
   //     ]
   //   );
   // }
-    
-    void _agregar(Contador contador){
-    setState(() {
-    contador.setNumero = contador.get_numero + 1;
-      
-    });
 
-  void _quitar(){
-    setState(() {
-    _conteo-= 1;
-      
-    });
-  }
-  void _restart(){
-    setState(() {
-    _conteo=0;
-      
-    });
+  void _incrementCounter(Contador item ) {
+  setState(() {//para decirle que re-pinte 
+    item.valor++;
+    //_counter++;
+  });
   }
 
+  void _decrementCounter(Contador item) {
+  setState(() {
+    item.valor--;
+    //_counter--;
+  });
+}
+  int _nContadores=0;
+  var _listContadores= <Contador>[];
+  void _addContador(){
+    setState(() {
+      _listContadores.add(new Contador("contador" + _nContadores.toString(),0));//añadimos el widget a la lista
+      _nContadores++;
+    });
+  }
 
 }
