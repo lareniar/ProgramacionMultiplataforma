@@ -98,3 +98,11 @@ class CuadroHoras extends StatelessWidget {
     );
   }
 }
+
+// _navigateUsingConstructor() async {
+//   _value = await Navigator.of(context).push(
+//     new MaterialPageRoute(
+//       builder: (context) => new MyWidget(value: _value)
+//     )
+//   );
+// }
