@@ -53,30 +53,22 @@ Color currentColor = Color(0xff443a49);
             ), ),
             
             new ButtonBar(buttonHeight: 100,),
-            
              Container(
               alignment: Alignment.centerRight,
               child: MaterialButton(
+                
                 onPressed: () {
                 setState(() {
                   Map map = {'containerText': textC.text, 'boxColor': boxColor};
+                  Navigator.of(context).pop(map);
                 });
               },
                 color: Colors.orange,
                 textColor: Colors.white,
                 child: Text('Submit'),
+                
               ),
 
-            ),
-             Container(
-              alignment: Alignment.bottomCenter,
-              padding: EdgeInsets.only(left: 120.0),
-              child: Column(
-                children: <Widget>[
-                  Text("Your na is : " + nUsername),
-                  Text("Your color is : " + boxColor.toString()),
-                ],
-              ),
             ),
           ],
         )),

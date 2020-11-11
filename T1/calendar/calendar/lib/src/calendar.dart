@@ -31,25 +31,40 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
-
-class CuadroContenido extends StatelessWidget {
-  const CuadroContenido({Key key, this.id, this.color, this.flexSize})
+class CuadroContenido extends StatefulWidget {
+   const CuadroContenido({Key key, this.id, this.color, this.flexSize})
       : super(
           key: key,
         );
-  final String id;
-  final int flexSize;
-  final int color;
+    final String id;
+    final int color;
+    final int flexSize;
+    
+  @override
+  _CuadroContenidoState createState() => _CuadroContenidoState();
+}
+
+class _CuadroContenidoState extends State<CuadroContenido> {
+  String id;
+  int flexSize;
+  int color;
+  String texto = '';
 
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Color(color),
       child: InkWell(
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => CuadroSettings()),
-        ), // handle your onTap here
+        onTap: () async {
+          final information = await Navigator.push(
+            context,
+            MaterialPageRoute(
+                fullscreenDialog: true, builder: (context) => CuadroSettings()),
+          );
+          setState(() {
+            texto = 'aaa';
+          });
+        },
         child: Container(
           width: 82,
           height: 50,
@@ -61,10 +76,8 @@ class CuadroContenido extends StatelessWidget {
           ),
           child: ListView(
             children: <Widget>[
-              Text('Uno'),
-              Text('Dos'),
-              Text('Tres'),
-            ],
+              Text('aaa')
+              ],
           ),
         ),
       ),
@@ -91,8 +104,6 @@ class CuadroHoras extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           Text('aa'),
-          Text('aa'),
-          Text('a'),
         ],
       ),
     );
