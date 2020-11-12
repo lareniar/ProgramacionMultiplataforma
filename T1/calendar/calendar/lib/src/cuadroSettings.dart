@@ -13,8 +13,9 @@ class _CuadroSettingsState extends State<CuadroSettings> {
   Color _valueColor;
   Color boxColor;
   Color pickerColor = Color(0xff443a49);
-Color currentColor = Color(0xff443a49);
+  Color currentColor = Color(0xff443a49);
   final String text;
+  
   _CuadroSettingsState({Key key, @required this.text}) : super();
     TextEditingController textC = new TextEditingController();
      String nUsername = "";
@@ -39,8 +40,8 @@ Color currentColor = Color(0xff443a49);
               controller: textC,
               decoration: const InputDecoration(
                 icon: Icon(Icons.person),
-                hintText: 'What do people call you?',
-                labelText: 'Name *',
+                hintText: 'Nombre de asignatura',
+                labelText: 'Asignatura',
               ),
             ),
             Container(
@@ -56,17 +57,15 @@ Color currentColor = Color(0xff443a49);
              Container(
               alignment: Alignment.centerRight,
               child: MaterialButton(
-                
                 onPressed: () {
                 setState(() {
-                  Map map = {'containerText': textC.text, 'boxColor': boxColor};
+                  Map map = {'containerText': textC.text, 'boxColor': _valueColor};
                   Navigator.of(context).pop(map);
                 });
               },
                 color: Colors.orange,
                 textColor: Colors.white,
-                child: Text('Submit'),
-                
+                child: Text('Enviar'),
               ),
 
             ),
